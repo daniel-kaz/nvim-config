@@ -7,7 +7,8 @@ return {
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-path',
-        'saadparwaiz1/cmp_luasnip'
+        'saadparwaiz1/cmp_luasnip',
+        'windwp/nvim-autopairs',
     },
     config = function()
         local cmp = require('cmp')
@@ -38,6 +39,7 @@ return {
                 --  Generally you don't need this, because nvim-cmp will display
                 --  completions whenever it has completion options available.
                 ['<C-Space>'] = cmp.mapping.complete {},
+                ['C-e'] = cmp.mapping.complete()
             },
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
@@ -47,7 +49,9 @@ return {
             })
         })
 
-
+        require('nvim-autopairs').setup {}
+        -- If you want to automatically add `(` after selecting a function or method
+        local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+        cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
-
 }

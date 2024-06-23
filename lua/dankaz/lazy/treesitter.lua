@@ -5,10 +5,13 @@ return {
         local configs = require("nvim-treesitter.configs")
         configs.setup({
             -- a list of parsers to be installed
-            ensured_installed = { "c", "lua", "vimdoc", "rust", "cpp", "javascript"},
+            ensure_installed = { "c", "lua", "vimdoc", "rust", "cpp", "javascript"},
+            auto_install = true,
             sync_install = false,
             highlight = { enable = true},
             indent = { enable = true },
+            modules = {},
+            ignore_install = {},
         })
     end,
 }
