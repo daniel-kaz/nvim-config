@@ -30,7 +30,23 @@ return {
             },
             clangd = {},
             rust_analyzer = {},
-            tsserver = {}
+            tsserver = {},
+            matlab_ls = {
+                cmd = {'matlab-language-server', '--stdio'},
+                filetypes = {'matlab'},
+                root_dir = function(fname)
+                    return require("lspconfig.util").root_pattern('.git')(fname) or vim.fn.getcwd()
+                end,
+                settings = {
+                    matlab = {
+                        indexWorkspace = true,
+                        installPath = "",
+                        matlabConnectionTiming = 'onStart',
+                        telemetry = true,
+                    },
+                },
+                single_file_support = true,
+            }
         }
 
         require("mason").setup()
