@@ -14,11 +14,12 @@ vim.opt.smartindent = true
 vim.opt.hlsearch = false
 vim.incsearch = true
 local home = ""
-if vim.fn.has('win32') then
+if vim.fn.has('win32') ~= 0 then
     home = os.getenv("USERPROFILE") or ""
 else
-    home = os.getenv("HOME") or ""
+    home = os.getenv('HOME') or ""
 end
+print(os.getenv('HOME') or "")
 vim.opt.undodir = home .. '/.vim/undodir'
 vim.opt.undofile = true
 vim.opt.termguicolors = true
