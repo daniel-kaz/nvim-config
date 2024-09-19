@@ -80,5 +80,9 @@ return {
                 prefix = "",
             },
         })
-    end
+    end,
+    {
+        "github/copilot.vim",
+
+    },
 }
