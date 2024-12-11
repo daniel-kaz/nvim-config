@@ -30,7 +30,6 @@ return {
             },
             clangd = {},
             rust_analyzer = {},
-            tsserver = {},
             matlab_ls = {
                 cmd = {'matlab-language-server', '--stdio'},
                 filetypes = {'matlab'},
@@ -46,7 +45,9 @@ return {
                     },
                 },
                 single_file_support = true,
-            }
+            },
+            pyright = {},
+
         }
 
         require("mason").setup()
@@ -80,9 +81,5 @@ return {
                 prefix = "",
             },
         })
-    end,
-    {
-        "github/copilot.vim",
-
-    },
+    end
 }
