@@ -45,7 +45,22 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
         vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+-- Vim jump not implemented on version 0.10.4
+        -- vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count=1, float=true}) end, opts)
+        -- vim.keymap.set("n", "]d", function() vim.diagnostic.jump({count=-1, float=true}) end, opts)
+        vim.keymap.set("n", "[d", function ()
+            vim.diagnostic.goto_next()
+        end)
+        vim.keymap.set("n", "]d", function ()
+            vim.diagnostic.goto_prev()
+        end)
     end
+})
+
+autocmd("TextYankPost", {
+    group = dankazGroup,
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank({higroup='incsearch', timeout=200})
+    end,
 })
