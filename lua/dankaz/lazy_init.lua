@@ -13,4 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     spec = "dankaz.lazy",
+    change_detection = {
+        notify = false,
+    }
 })
