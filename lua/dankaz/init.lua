@@ -64,3 +64,21 @@ autocmd("TextYankPost", {
         vim.highlight.on_yank({higroup='incsearch', timeout=200})
     end,
 })
+
+-- python stuff
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr"
+vim.o.foldlevel = 99
+
+
+local function close_markdown_folds()
+  local total_lines = vim.fn.line('$')
+  for i = 1, total_lines do
+    local fold_level = vim.fn.foldlevel(i)
+    if fold_level == 2 then
+      vim.fn.execute(i .. 'foldclose')
+    end
+  end
+end
+
+vim.keymap.set('n', '<leader>z', close_markdown_folds)

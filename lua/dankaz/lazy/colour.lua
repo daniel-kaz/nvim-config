@@ -4,6 +4,7 @@ function ColourMyScreen(color)
     vim.api.nvim_set_hl(0,"Normal", {bg = "#181b1c"})
     vim.api.nvim_set_hl(0, "NormalFloat",{bg = "#181b1c"} )
     vim.api.nvim_set_hl(0, "NormalNC",{bg = "#181b1c"} )
+
 end
 
 return {
