@@ -1,6 +1,6 @@
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "python",
+  pattern = "*.ju.*",
   callback = function()
     vim.wo.foldmethod = "expr"
     vim.wo.foldexpr = "v:lua.MarkdownDocstringFolds()"
