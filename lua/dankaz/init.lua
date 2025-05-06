@@ -45,9 +45,6 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
         vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
--- Vim jump not implemented on version 0.10.4
-        -- vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count=1, float=true}) end, opts)
-        -- vim.keymap.set("n", "]d", function() vim.diagnostic.jump({count=-1, float=true}) end, opts)
         vim.keymap.set("n", "[d", function ()
             vim.diagnostic.goto_next()
         end)
@@ -65,20 +62,4 @@ autocmd("TextYankPost", {
     end,
 })
 
--- python stuff
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr"
-vim.o.foldlevel = 99
 
-
-local function close_markdown_folds()
-  local total_lines = vim.fn.line('$')
-  for i = 1, total_lines do
-    local fold_level = vim.fn.foldlevel(i)
-    if fold_level == 2 then
-      vim.fn.execute(i .. 'foldclose')
-    end
-  end
-end
-
-vim.keymap.set('n', '<leader>z', close_markdown_folds)
